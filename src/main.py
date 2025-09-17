@@ -46,7 +46,7 @@ tabs = []
 
 for db in args.file:
     if os.path.isfile(db):
-        with open(db, 'r', newline='') as fd:
+        with open(db, 'r', newline='', encoding="utf8") as fd:
           reader = csv.DictReader(fd)
           for row in reader:
               tabs.append(row)
@@ -77,7 +77,7 @@ def main():
     for row in students:
         print(row.get_name(), row.get_grade())
 
-    with open(args.report, 'w') as fd:
+    with open(args.report, 'w', encoding="utf8") as fd:
         writer = csv.writer(fd, delimiter=' ',
           quotechar=',', quoting=csv.QUOTE_MINIMAL)
         writer.writerows(tabs)
