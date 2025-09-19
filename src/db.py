@@ -23,11 +23,14 @@ class DB:
     def __init__(self, args = args, htabs:list = htabs,\
                     Student = Student, Teacher = Teacher):
         self.htab_student_avg = ['№', 'name', 'AVG']
+        self.htab_teachers = ['№', 'name', 'subject']
         self.htabs = htabs
         self.args = args
         self.tabs = self.__gen_db()
         self.Students = self.__gen_lStudents()
         self.grade_Student()
+        self.Teachers = self.__gen_lTeachers()
+        self.add_subject_Teachers()
 
     def __gen_db(self)->dict:
         tabs = []
@@ -73,6 +76,8 @@ class DB:
         for report in self.args.__dict__['report']:
             if report == 'student-performance':
                 self.report_avg_student()
+            if report == 'teachers':
+                self.report_teachers()
         return True
 
     def report_avg_student(self)->list:
@@ -82,22 +87,29 @@ class DB:
         print(tabulate(stud, self.htab_student_avg, "grid"))
         return stud
 
+    def report_teachers(self)->list:
+        stud = []
+        for i in range(len(self.Teachers)):
+            stud.append([i, self.Teachers[i].get_name(), str(self.Teachers[i].get_subj())])
+        print(tabulate(stud, self.htab_teachers, "grid"))
+        return stud
+
     def file_report_student(self):
         with open(args.report, 'w', encoding="utf8") as fd:
             print(tabulate(self.report_avg_student(), self.htab_student_avg, "grid"), file=fd)
         return True
 
-    def gen_lTeachers(self)->list:
+    def __gen_lTeachers(self)->list:
         Teachers = []
-        for name in gen_ddlist(self.tabs, htabs['htb_teacher']):
-            teachers.append(Teacher(name))
+        for name in self.__gen_ddlist(htabs['htb_teacher']):
+            Teachers.append(Teacher(name))
         return Teachers
 
-    def add_subject_Teacher(self)->list:
-        self.Teachers = gen_lTeachers(tabs)
-        for i in range(len(teachers)):
+    def add_subject_Teachers(self)->list:
+        tabs = self.tabs
+        for i in range(len(self.Teachers)):
             for k in range(len(tabs)):
-                if ( (tabs[k][htb_teacher] == teachers[i].get_name())\
-                    and (tabs[k][htb_subject] not in teachers[i].get_subj()) ):
-                    teachers[i].add_subj(tabs[k][htb_subject])
-        return teachers
+                if ( (tabs[k][htabs['htb_teacher']] == self.Teachers[i].get_name())\
+                    and (tabs[k][htabs['htb_subject']] not in self.Teachers[i].get_subj()) ):
+                    self.Teachers[i].add_subj(tabs[k][htabs['htb_subject']])
+        return True
