@@ -14,14 +14,37 @@ from .args import args
 from .classes import *
 from .db import *
 
+htab_student_avg = ['№', 'name', 'AVG']
+
+def gen_lstudents(tabs:dict)->list:
+    students = []
+    for name in gen_ddlist(tabs, 'student_name'):
+        students.append(student(name))
+    return students
+
+def gen_lteachers(tabs:dict)->list:
+    teachers = []
+    for name in gen_ddlist(tabs, 'teacher_name'):
+        teachers.append(teacher(name))
+    return teachers
+
+def report_avg_student(students, htab_student_avg)->list:
+    stud = []
+    for i in range(len(students)):
+        stud.append([i, students[i].get_name(), str(students[i].get_avg())])
+    print(tabulate(stud, htab_student_avg, "grid"))
+    return stud
+
+def file_report_student(stud, htab_student_avg):
+    with open(args.report, 'w', encoding="utf8") as fd:
+        print(tabulate(stud, htab_student_avg, "grid"), file=fd)
+    return True
+
 def main():
     tabs = gen_db(args.file)
 #    tab = {i: i for i in tabs[0].keys()}
 
-    teachers = []
-    for name in gen_ddlist(tabs, 'teacher_name'):
-        teachers.append(teacher(name))
-
+    teachers = gen_lteachers(tabs) 
     for i in range(len(teachers)):
         for k in range(len(tabs)):
             if ( (tabs[k]['teacher_name'] == teachers[i].get_name())\
@@ -29,24 +52,14 @@ def main():
                 teachers[i].add_subj(tabs[k]['subject'])
 
 
-    students = []
-    for name in gen_ddlist(tabs, 'student_name'):
-        students.append(student(name))
-
+    students = gen_lstudents(tabs)
     for i in range(len(students)):
         for k in range(len(tabs)):
             if ( tabs[k]['student_name'] == students[i].get_name() and tabs[k]['grade']):
                 students[i].add_grade({tabs[k]['subject']: tabs[k]['grade']})
 
-    stud = []
-    for i in range(len(students)):
-        stud.append([i, students[i].get_name(), str(students[i].get_avg())])
-
-    tab = ['№', 'name', 'AVG']
-    print(tabulate(stud, tab, "grid"))
-
-    with open(args.report, 'w', encoding="utf8") as fd:
-        print(tabulate(stud, tab, "grid"), file=fd)
+    file_report_student(report_avg_student(students, htab_student_avg),\
+        htab_student_avg)
 
 
 """
