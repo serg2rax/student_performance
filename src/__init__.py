@@ -1,1 +1,1 @@
-__all__ = ['main', 'args', 'classes', 'db']
+__all__ = ['main', 'args', 'classes', 'db', 'func']
