@@ -29,7 +29,7 @@ def gen_lTeachers(tabs:dict)->list:
     return teachers
 
 def add_subject_Teacher(tabs:dict)->list:
-    teachers = gen_lTeachers(tabs) 
+    teachers = gen_lTeachers(tabs)
     for i in range(len(teachers)):
         for k in range(len(tabs)):
             if ( (tabs[k][htb_teacher] == teachers[i].get_name())\

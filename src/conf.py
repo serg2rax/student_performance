@@ -10,7 +10,8 @@ Email  : serg2ak@ya.ru
 """
 
 htab_student_avg = ['№', 'name', 'AVG']
-htb_teacher = 'teacher_name'
-htb_student = 'student_name'
-htb_subject = 'subject'
-htb_grade = 'grade'
+htabs = {
+    'htb_teacher' : 'teacher_name',
+    'htb_student' : 'student_name',
+    'htb_subject' : 'subject',
+    'htb_grade' : 'grade'}

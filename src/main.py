@@ -11,17 +11,16 @@ Email  : serg2ak@ya.ru
 
 from tabulate import tabulate
 from .args import args
-from .classes import *
-from .db import *
-from .func import *
+from .classes import Student, Teacher
+from .db import DB
+from .func import gen_lStudents, gen_lTeachers, add_subject_Teacher,\
+                    add_grade_Student, report_avg_student, file_report_student
 from .conf import *
 
 def main():
-    tabs = gen_db(args.file)
 
-    file_report_student(report_avg_student(add_grade_Student(tabs), htab_student_avg),\
-        htab_student_avg)
-
+    app = DB()
+    app.report()
 
 if __name__ == "__main__" :
     main()

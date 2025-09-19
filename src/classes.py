@@ -37,7 +37,7 @@ class Student:
         self.name = name
     def set_avg(self, avg):
         self.avg = avg
-        
+
     def get_name(self):
         return self.name
     def get_grade(self):
