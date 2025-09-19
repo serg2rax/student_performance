@@ -25,7 +25,7 @@ htb_grade = 'grade'
 def main():
     tabs = gen_db(args.file)
 
-    file_report_student(report_avg_student(add_grade_student(tabs), htab_student_avg),\
+    file_report_student(report_avg_student(add_grade_Student(tabs), htab_student_avg),\
         htab_student_avg)
 
 

@@ -10,7 +10,7 @@ Email  : serg2ak@ya.ru
 """
 
 
-class teacher:
+class Teacher:
     def __init__(self, name):
         self.name = name
         self.subject = []
@@ -26,7 +26,7 @@ class teacher:
         return self.subject
 
 
-class student:
+class Student:
     def __init__(self, name):
         self.name = name
         self.grade = []

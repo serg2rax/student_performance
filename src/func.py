@@ -20,20 +20,20 @@ htb_student = 'student_name'
 htb_subject = 'subject'
 htb_grade = 'grade'
 
-def gen_lstudents(tabs:dict)->list:
+def gen_lStudents(tabs:dict)->list:
     students = []
     for name in gen_ddlist(tabs, htb_student):
-        students.append(student(name))
+        students.append(Student(name))
     return students
 
-def gen_lteachers(tabs:dict)->list:
+def gen_lTeachers(tabs:dict)->list:
     teachers = []
     for name in gen_ddlist(tabs, htb_teacher):
-        teachers.append(teacher(name))
+        teachers.append(Teacher(name))
     return teachers
 
-def add_subject_teacher(tabs:dict)->list:
-    teachers = gen_lteachers(tabs) 
+def add_subject_Teacher(tabs:dict)->list:
+    teachers = gen_lTeachers(tabs) 
     for i in range(len(teachers)):
         for k in range(len(tabs)):
             if ( (tabs[k][htb_teacher] == teachers[i].get_name())\
@@ -41,8 +41,8 @@ def add_subject_teacher(tabs:dict)->list:
                 teachers[i].add_subj(tabs[k][htb_subject])
     return teachers
 
-def add_grade_student(tabs:dict)->list:
-    students = gen_lstudents(tabs)
+def add_grade_Student(tabs:dict)->list:
+    students = gen_lStudents(tabs)
     for i in range(len(students)):
         for k in range(len(tabs)):
             if ( tabs[k][htb_student] == students[i].get_name() and tabs[k]['grade']):
