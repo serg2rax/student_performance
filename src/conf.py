@@ -9,7 +9,6 @@ Author : Sergey Alexadrovich Kravchuk
 Email  : serg2ak@ya.ru
 """
 
-htab_student_avg = ['№', 'name', 'AVG']
 htabs = {
     'htb_teacher' : 'teacher_name',
     'htb_student' : 'student_name',

@@ -15,11 +15,10 @@ from os.path import os
 from tabulate import tabulate
 from .args import args
 from .classes import *
-from .db import *
 from .conf import *
 
 
-class DB:
+class App:
     def __init__(self, args = args, htabs:list = htabs,\
                     Student = Student, Teacher = Teacher):
         self.htab_student_avg = ['№', 'name', 'AVG']
