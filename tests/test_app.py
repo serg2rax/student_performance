@@ -23,8 +23,8 @@ class TestApp:
         assert self.app.gen_ddlist(htabs['htb_teacher']) ==\
             ['Ковалева Анна', 'Орлов Сергей', 'Никулин Сергей']
     def test_report_avg_student(self):
-        assert self.app.report_avg_student() == [[0, 'Семенова Елена', '5.0'],\
-            [1, 'Титов Владислав', '4.0']]
+        assert self.app.report_avg_student() == [[1, 'Семенова Елена', '5.0'],\
+            [2, 'Титов Владислав', '4.0']]
 
 class TestClass:
     app = App(args, htabs, Student, Teacher)
