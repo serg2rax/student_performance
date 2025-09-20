@@ -88,9 +88,13 @@ class App:
     def report_avg_student(self)->list:
         stud = []
         for i in range(len(self.Students)):
-            stud.append([i, self.Students[i].get_name(), str(self.Students[i].get_avg())])
-        print(tabulate(sorted(stud, key=lambda stud: stud[2], reverse=True),\
-            self.htab_student_avg, "grid"))
+            stud.append([self.Students[i].get_name(), str(self.Students[i].get_avg())])
+        stud = sorted(stud, key=lambda stud: stud[1], reverse=True)
+        i = 0;
+        for row in stud:
+            i += 1
+            row.insert(0, i)
+        print(tabulate(stud, self.htab_student_avg, "grid"))
         return stud
 
     def report_teachers(self)->list:
