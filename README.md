@@ -6,7 +6,9 @@ Written specifically for https://work-mate.ru
 
 Имена преподавателей и дисциплин хранится в классе App списке Teachers
 Чтобы добавить новый отчет нужно добавить название и вызов функции в класс App.report()
-строка 80 https://github.com/serg2rax/student_performance/blob/31810c502a6ced7ae246bfc7a7536b73265f2321/src/app.py#L80  в файле src/app.py
+строка 80 в файле src/app.py
+
+https://github.com/serg2rax/student_performance/blob/31810c502a6ced7ae246bfc7a7536b73265f2321/src/app.py#L80-L86
 
 пример:
 ```Python
