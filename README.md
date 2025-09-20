@@ -4,7 +4,10 @@ Written specifically for https://work-mate.ru
 Пример отчета:
 ![report_student-performance.png](https://github.com/serg2rax/student_performance/blob/main/img/report_student-performance.png)
 
-Имена преподавателей и дисциплин хранится в классе App списке Teachers
+Имена студентов и оценок хранится в классе App списке Students
+
+<https://github.com/serg2rax/student_performance/blob/6fd7a47050852445ee04bd0c3f979f7683328a2e/src/app.py#L26>
+
 Чтобы добавить новый отчет нужно добавить название и вызов функции в класс App.report()
 строка 80 в файле src/app.py
 
