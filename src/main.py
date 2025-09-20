@@ -10,10 +10,19 @@ Email  : serg2ak@ya.ru
 """
 
 from .app import App
+from .args import argp
+from .classes import Student, Teacher
+from .conf import htabs
 
 def main():
 
-    app = App()
+    pars = argp()
+    args = pars.parse_args()
+    if (args.file is None or args.report is None):
+        pars.print_help()
+        return True
+
+    app = App(args, htabs, Student, Teacher)
     app.report()
 
 if __name__ == "__main__" :

@@ -44,10 +44,10 @@ class Student:
         return self.grade
     def get_avg(self):
         count = 0
+        summ = 0
         for grade in self.grade:
             for subject, digit in grade.items():
                 digit = int(digit)
-                if count :
-                    digit += digit
+                summ += digit
                 count += 1
-        return digit / count
+        return summ / count
