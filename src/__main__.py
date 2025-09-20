@@ -13,6 +13,7 @@ from .app import App
 from .args import argp
 from .classes import Student, Teacher
 from .conf import htabs
+from sys import exit
 
 def main():
 
@@ -20,7 +21,7 @@ def main():
     args = pars.parse_args()
     if (args.file is None or args.report is None):
         pars.print_help()
-        return True
+        exit(1)
 
     app = App(args, htabs, Student, Teacher)
     app.report()

@@ -5,4 +5,4 @@
 
 from src import *
 
-main.main()
+__main__.main()

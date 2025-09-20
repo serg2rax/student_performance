@@ -14,6 +14,9 @@ from tabulate import tabulate
 from sys import stderr
 
 class App:
+    """
+        Main app class
+    """
     def __init__(self, args, htabs, Student, Teacher):
         self.htab_student_avg = ['№', 'name', 'AVG']
         self.htab_teachers = ['№', 'name', 'subject']
@@ -30,9 +33,9 @@ class App:
         for db in self.args.file:
             if os.path.isfile(db):
                 with open(db, 'r', newline='', encoding="utf8") as fd:
-                  reader = csv.DictReader(fd)
-                  for row in reader:
-                      tabs.append(row)
+                    reader = csv.DictReader(fd)
+                    for row in reader:
+                        tabs.append(row)
             else:
                 print('File "%s" not found!!!\n' % db, file=stderr)
         return tabs
@@ -45,19 +48,25 @@ class App:
         for i in l_tabs:
             for k in l_tabs:
                 if ( i != k and _names[i] == _names[k] ):
-                    _names[k] = False
+                    _names[k] = False;
         names = []
         for i in _names:
             if i : names.append(i)
-        return names;
+        return names
 
     def gen_lStudents(self, Student)->list:
+        """
+            init Student
+        """
         Students = []
         for name in self.gen_ddlist(self.htabs['htb_student']):
             Students.append(Student(name))
         return Students
 
     def grade_Student(self):
+        """
+            init gradei list for Students
+        """
         for i in range(len(self.Students)):
             for k in range(len(self.tabs)):
                 if ( self.tabs[k][self.htabs['htb_student']] ==\
@@ -80,7 +89,8 @@ class App:
         stud = []
         for i in range(len(self.Students)):
             stud.append([i, self.Students[i].get_name(), str(self.Students[i].get_avg())])
-        print(tabulate(sorted(stud, key=lambda stud: stud[2], reverse=True), self.htab_student_avg, "grid"))
+        print(tabulate(sorted(stud, key=lambda stud: stud[2], reverse=True),\
+            self.htab_student_avg, "grid"))
         return stud
 
     def report_teachers(self)->list:
@@ -96,12 +106,18 @@ class App:
         return True
 
     def gen_lTeachers(self, Teacher)->list:
+        """
+            init  Teacher
+        """
         Teachers = []
         for name in self.gen_ddlist(self.htabs['htb_teacher']):
             Teachers.append(Teacher(name))
         return Teachers
 
     def add_subject_Teachers(self)->list:
+        """
+            init subject list for Teachers
+        """
         for i in range(len(self.Teachers)):
             for k in range(len(self.tabs)):
                 if ( (self.tabs[k][self.htabs['htb_teacher']] ==\
